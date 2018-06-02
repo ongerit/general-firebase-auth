@@ -13,7 +13,7 @@ const SignUp = ({history}) =>
   </div>
 
 const INITIAL_STATE = {
- // [TO] causes errors username: '',
+  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -31,6 +31,7 @@ class SignUpForm extends Component {
   }
 
   onSubmit = (event) => {
+    // event.preventDefault()
     const {
       username,
       email,
@@ -41,16 +42,28 @@ class SignUpForm extends Component {
       history,
     } = this.props
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+    auth.doCreateUserWithEmailAndPassword(email, passwordOne)      
       .then(authUser => {
-        this.setState(() => ({ ...INITIAL_STATE }))
-        history.push(routes.HOME)
+
+        // this.setState(() => ({ ...INITIAL_STATE }))
+        // history.push(routes.HOME)
+
+        // Create a user in your own accessible Firebase Database too
+        db.doCreateUser(authUser.user.uid, username, email)
+          .then(() => {
+            this.setState(()=> ({...INITIAL_STATE}))
+            history.push(routes.HOME)
+          })
+          .catch(error =>{
+            this.setState(byPropKey('error',error))
+          })
+
       })
       .catch(error => {
         this.setState(byPropKey('error', error))
       });
-    event.preventDefault();
-  }
+      event.preventDefault();
+    }
 
   render() {
     const {
@@ -110,7 +123,6 @@ const SignUpLink = () =>
     {' '}
     <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
-
 
 export default withRouter(SignUp)
 export {

@@ -14,6 +14,7 @@ import Account from './Account'
 
 import * as routes from '../constants/routes'
 import { firebase } from '../firebase';
+import withAuthentication from './withAuthentication';
 
 import './App.css'
 
@@ -74,4 +75,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);
