@@ -1,8 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+import './index.css'
+import App from './components/App'
+import store from './store'
+import registerServiceWorker from './registerServiceWorker'
+import dotenv from 'dotenv'
+dotenv.config()
 
-ReactDOM.render(<App />, document.getElementById('root'));
+console.log(process.env.API)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

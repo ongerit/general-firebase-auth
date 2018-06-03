@@ -2,9 +2,9 @@ import React, { Component} from 'react'
 import {
   Link,
   withRouter,
-} from 'react-router-dom';
-import * as routes from '../constants/routes';
-import { auth } from '../firebase';
+} from 'react-router-dom'
+import * as routes from '../constants/routes'
+import { auth, db } from '../firebase'
 
 const SignUp = ({history}) =>
   <div>
@@ -47,7 +47,6 @@ class SignUpForm extends Component {
 
         // this.setState(() => ({ ...INITIAL_STATE }))
         // history.push(routes.HOME)
-
         // Create a user in your own accessible Firebase Database too
         db.doCreateUser(authUser.user.uid, username, email)
           .then(() => {
@@ -57,12 +56,11 @@ class SignUpForm extends Component {
           .catch(error =>{
             this.setState(byPropKey('error',error))
           })
-
       })
       .catch(error => {
         this.setState(byPropKey('error', error))
-      });
-      event.preventDefault();
+      })
+      event.preventDefault()
     }
 
   render() {
@@ -113,7 +111,7 @@ class SignUpForm extends Component {
         {error && <p>{error.message}</p>}
 
       </form>
-    );
+    )
   }
 }
 
@@ -128,4 +126,4 @@ export default withRouter(SignUp)
 export {
   SignUpForm,
   SignUpLink,
-};
+}
