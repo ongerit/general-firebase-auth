@@ -41,40 +41,44 @@ class App extends Component {
 
   render() {
     return (
-    <Router>
-      <div>
-      <Navigation authUser={this.state.authUser} />
-        <hr />
-        <Route
-          exact path={routes.LANDING}
-          component={() => <Landing />}
-        />
-        <Route
-          exact path={routes.SIGN_UP}
-          component={() => <SignUp />}
-        />
-        <Route
-          exact path={routes.PASSWORD_FORGET}
-          component={() => <PasswordForget />}
-        />
-        <Route
-          exact path={routes.HOME}
-          component={() => <Home />}
-        />
-        <Route
-          exact path={routes.SIGN_IN}
-          component={() => <SignIn />}
-        />
-        <Route
-          exact path={routes.SIGN_OUT}
-          component={() => <SignOutButton />}
-        />
-        <Route
-          exact path={routes.ACCOUNT}
-          component={() => <Account />}
-        />
-      </div>
-    </Router>
+      <Router>
+        <div>
+          <Navigation authUser={this.state.authUser} />
+          <hr />
+          <section className="section">
+            <div className="container">
+              <Route
+                exact path={routes.LANDING}
+                component={() => <Landing />}
+              />
+              <Route
+                exact path={routes.SIGN_UP}
+                component={() => <SignUp />}
+              />
+              <Route
+                exact path={routes.PASSWORD_FORGET}
+                component={() => <PasswordForget />}
+              />
+              <Route
+                exact path={routes.HOME}
+                component={() => <Home />}
+              />
+              <Route
+                exact path={routes.SIGN_IN}
+                component={() => <SignIn />}
+              />
+              <Route
+                exact path={routes.SIGN_OUT}
+                component={() => <SignOutButton />}
+              />
+              <Route
+                exact path={routes.ACCOUNT}
+                component={() => <Account />}
+              />
+            </div>
+          </section>
+        </div>
+      </Router>
     );
   }
 }

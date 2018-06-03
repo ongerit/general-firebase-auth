@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
-import {auth} from '../firebase'
+import { auth } from '../firebase'
 
 const PasswordForget = () =>
   <div>
@@ -9,11 +9,11 @@ const PasswordForget = () =>
     <PasswordForgetForm />
   </div>
 
-const byPropKey =(propertyName, value) => () =>({
-  [propertyName] : value,
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value,
 })
 
-const INITIAL_STATE ={
+const INITIAL_STATE = {
   email: '',
   error: null,
 }
@@ -21,21 +21,21 @@ const INITIAL_STATE ={
 class PasswordForgetForm extends Component {
   constructor(props) {
     super(props)
-    this.state ={...INITIAL_STATE}
+    this.state = { ...INITIAL_STATE }
   }
 
   onSubmit = (event) => {
-    const {email} = this.state
+    const { email } = this.state
 
     auth.doPasswordReset(email)
-      .then( ()=> {
-          this.setState(() => ({ ...INITIAL_STATE }))
+      .then(() => {
+        this.setState(() => ({ ...INITIAL_STATE }))
       })
-      .catch( error => {
+      .catch(error => {
         this.setState(byPropKey('error', error))
       })
 
-      event.preventDefault()
+    event.preventDefault()
   }
 
   render() {
@@ -48,23 +48,25 @@ class PasswordForgetForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
+          className="input field"
           value={this.state.email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-
-        <button disabled={isInvalid} type="submit">
+        <button
+          className="button is-primary field"
+          adisabled={isInvalid} type="submit">
           Reset Password
         </button>
 
-        { error && <p>{error.message}</p> }
+        {error && <p>{error.message}</p>}
       </form>
     )
   }
 }
 
-const PasswordForgetLink = () => 
+const PasswordForgetLink = () =>
   <p>
     <Link to="/pw-forget">Forget Password?</Link>
   </p>

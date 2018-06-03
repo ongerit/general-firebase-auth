@@ -7,9 +7,10 @@ import PasswordChangeForm from '../../components/PasswordChange'
 import withAuthorization from '../../components/withAuthorization'
 
 const Account = ({ authUser }) =>
-  <div>
-    <h4>Account: {authUser.email}</h4>
-    <PasswordForgetForm />
+  <div className="container is-fluid">
+    <h4 className="title">Account</h4>
+    <p className="subtitle">
+    {authUser.email}</p>
     <PasswordChangeForm />
   </div>
 

@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import {
   Link,
   withRouter,
@@ -6,7 +6,7 @@ import {
 import * as routes from '../constants/routes'
 import { auth, db } from '../firebase'
 
-const SignUp = ({history}) =>
+const SignUp = ({ history }) =>
   <div>
     <h1>SignUp</h1>
     <SignUpForm history={history} />
@@ -42,7 +42,7 @@ class SignUpForm extends Component {
       history,
     } = this.props
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)      
+    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
 
         // this.setState(() => ({ ...INITIAL_STATE }))
@@ -50,18 +50,18 @@ class SignUpForm extends Component {
         // Create a user in your own accessible Firebase Database too
         db.doCreateUser(authUser.user.uid, username, email)
           .then(() => {
-            this.setState(()=> ({...INITIAL_STATE}))
+            this.setState(() => ({ ...INITIAL_STATE }))
             history.push(routes.HOME)
           })
-          .catch(error =>{
-            this.setState(byPropKey('error',error))
+          .catch(error => {
+            this.setState(byPropKey('error', error))
           })
       })
       .catch(error => {
         this.setState(byPropKey('error', error))
       })
-      event.preventDefault()
-    }
+    event.preventDefault()
+  }
 
   render() {
     const {
@@ -81,30 +81,37 @@ class SignUpForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
+          className="input field"
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
           placeholder="Full Name"
         />
         <input
+          className="input field"
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
         <input
+          className="input field"
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
         <input
+          className="input field"
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <button
+          className="button is-primary field"
+          disabled={isInvalid} 
+          type="submit">
           Sign Up
         </button>
 

@@ -18,11 +18,14 @@ class Home extends Component {
     const { users } = this.props
 
     return (
-      <div>
-        <h1>Home</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
-        { !!users && <UserList users={users} /> }
-      </div>
+      <section className="section">
+        <div className="container">
+          <h2 className="title">NO DEVICE FOUND.</h2>
+          <p>The Access Device Page is accessible by every signed in user.</p>
+
+          {!!users && <UserList users={users} />}
+        </div>
+      </section>
     )
   }
 }
