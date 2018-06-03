@@ -3,18 +3,22 @@ import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom"
-import Navigation from './Navigation'
-import Landing from './Landing'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
-import SignOutButton from './SignOut'
-import PasswordForget from './PasswordForget'
-import Home from './Home'
-import Account from './Account'
 
-import * as routes from '../constants/routes'
-import { firebase } from '../firebase';
-import withAuthentication from './withAuthentication';
+// Components
+import withAuthentication from './components/withAuthentication';
+import Navigation from './components/Navigation'
+import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
+import SignOutButton from './components/SignOut'
+import PasswordForget from './components/PasswordForget'
+
+// Pages
+import Landing from './pages/Landing'
+import Home from './pages/Home'
+import Account from './pages/Account/Account'
+
+import * as routes from './constants/routes'
+import { firebase } from './firebase';
 
 import './App.css'
 
