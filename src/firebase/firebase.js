@@ -2,7 +2,6 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
-// import {apiKey} from './prod'
 
 // import * as firebase from 'firebase';
 const  config = {

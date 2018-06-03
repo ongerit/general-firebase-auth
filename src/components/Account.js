@@ -8,7 +8,7 @@ import withAuthorization from './withAuthorization'
 
 const Account = ({ authUser }) =>
   <div>
-    <h1>Account: {authUser.email}</h1>
+    <h4>Account: {authUser.email}</h4>
     <PasswordForgetForm />
     <PasswordChangeForm />
   </div>
