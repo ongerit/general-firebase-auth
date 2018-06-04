@@ -8,7 +8,7 @@ import { auth, db } from '../firebase'
 
 const SignUp = ({ history }) =>
   <div>
-    <h1>SignUp</h1>
+    <h1 className="title">Sign Up</h1>
     <SignUpForm history={history} />
   </div>
 
@@ -17,6 +17,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  device: '',
   error: null,
 }
 
@@ -35,6 +36,7 @@ class SignUpForm extends Component {
     const {
       username,
       email,
+      device,
       passwordOne,
     } = this.state
 
@@ -44,12 +46,10 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-
-        // this.setState(() => ({ ...INITIAL_STATE }))
-        // history.push(routes.HOME)
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.user.uid, username, email)
-          .then(() => {
+        db.doCreateUser(authUser.user.uid, username, email, device)
+          .then((data) => {
+            console.log(data)
             this.setState(() => ({ ...INITIAL_STATE }))
             history.push(routes.HOME)
           })
@@ -67,6 +67,7 @@ class SignUpForm extends Component {
     const {
       username,
       email,
+      device,
       passwordOne,
       passwordTwo,
       error,
@@ -75,6 +76,7 @@ class SignUpForm extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
+      device === '' ||
       email === '' ||
       username === ''
 
@@ -93,6 +95,13 @@ class SignUpForm extends Component {
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
+        />
+        <input
+          className="input field"
+          value={device}
+          onChange={event => this.setState(byPropKey('device', event.target.value))}
+          type="text"
+          placeholder="Device Number"
         />
         <input
           className="input field"

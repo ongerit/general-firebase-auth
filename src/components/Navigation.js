@@ -6,7 +6,7 @@ import SignOutButton from './SignOut';
 import * as routes from '../constants/routes'
 
 const Navigation = ({authUser}) =>
-  <nav class="navbar container" role="navigation" aria-label="main navigation">
+  <nav className="navbar container" aria-label="main navigation">
     { authUser
         ? <NavigationAuth />
         : <NavigationNonAuth />

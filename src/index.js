@@ -5,10 +5,6 @@ import './index.scss'
 import App from './App'
 import store from './store'
 import registerServiceWorker from './registerServiceWorker'
-import dotenv from 'dotenv'
-dotenv.config()
-
-console.log(process.env.API)
 
 ReactDOM.render(
   <Provider store={store}>

@@ -15,34 +15,44 @@ class Home extends Component {
   }
 
   render() {
-    const { users } = this.props
-
+    const { users, authUser } = this.props
+    const userId = authUser.uid
+    console.log(users)
     return (
-      <section className="section">
-        <div className="container">
-          <h2 className="title">NO DEVICE FOUND.</h2>
-          <p>The Access Device Page is accessible by every signed in user.</p>
+      <div className="container">
+      {
+        users[authUser.uid]
+        ? <h1 className="title">Hi, {users[authUser.uid].username}</h1>
+        : ''
+      }
+      {
+        users[authUser.uid]
+        ? <h2 className="subtitle">DEVICE NUMBER: {users[authUser.uid].device}</h2>
+        : <h2 className="subtitle">NO DEVICE FOUND.</h2>
+      }
 
-          {!!users && <UserList users={users} />}
-        </div>
-      </section>
+        <p>The Access Device Page is accessible by every signed in user.</p>
+        {!!users && <UserList users={users} />}
+      </div>
     )
   }
 }
 
 const UserList = ({ users }) =>
   <div>
+    <hr />
     <h2>List of Usernames of Users</h2>
     <p>(Saved on Sign Up in Firebase Database)</p>
-
-    {Object.keys(users).map(key =>
-      <div key={key}> {users[key].username}</div>
-    )}
+    <p className="has-text-weight-bold">USERS</p>
+      {Object.keys(users).map(key =>
+        <p key={key}> {users[key].username}</p>
+      )}
   </div>
 
 
 const mapStateToProps = (state) => ({
   users: state.userState.users,
+  authUser: { ...state.sessionState.authUser },
 })
 
 const mapDispatchToProps = (dispatch) => ({
