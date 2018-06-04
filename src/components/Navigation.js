@@ -15,7 +15,7 @@ const Navigation = ({authUser}) =>
 
 const NavigationAuth = () =>
   <ul className="navbar-start">
-    <li className="navbar-item"><Link to={routes.LANDING}>Landing</Link></li>
+    {/* <li className="navbar-item"><Link to={routes.LANDING}>Landing</Link></li> */}
     <li className="navbar-item"><Link to={routes.HOME}>Access Device</Link></li>
     <li className="navbar-item"><Link to={routes.ACCOUNT}>Account</Link></li>
     <li className="navbar-item"><SignOutButton /></li>
