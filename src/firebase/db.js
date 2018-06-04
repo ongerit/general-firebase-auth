@@ -7,6 +7,7 @@ export const doCreateUser = (id, username, email, device) =>
     username,
     email,
     device,
+    role: 'user',
   });
 
 export const onceGetUsers = () =>
